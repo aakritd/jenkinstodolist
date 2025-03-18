@@ -10,7 +10,7 @@
 </head>
 <body>
     {% if request.user.is_authenticated %}
-        <p>{{request.user}}</p>
+        <p>username : {{request.user}}</p>
         <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}
             <input type="submit" value="Logout">
