@@ -18,7 +18,7 @@ spec:
       containers:
       - name: db
         image: aakritdongol/mysql:latest
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         ports:
         - containerPort: 3306
         env:

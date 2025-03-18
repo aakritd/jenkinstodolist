@@ -18,6 +18,7 @@ spec:
       containers:
       - name: backend
         image: aakritdongol/backend-img:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8000
         env:
