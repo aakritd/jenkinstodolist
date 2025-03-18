@@ -24,6 +24,7 @@ spec:
         volumeMounts:
         - mountPath: /usr/share/nginx/html/static
           name: static-files-volume
+          readOnly: true # Make the volume read-only
       volumes:
       - name: static-files-volume
         persistentVolumeClaim:
