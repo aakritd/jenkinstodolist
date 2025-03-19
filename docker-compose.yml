@@ -1,8 +1,9 @@
 version: "3.8"
+
 services:
   nginx:
     build:
-      context: ./nginx #Dockerfile's location
+      context: ./nginx # Dockerfile's location
     container_name: nginx
     ports:
       - "80:80"
@@ -11,6 +12,8 @@ services:
       - django
     networks:
       - todoList
+    volumes:
+      - static_volume:/usr/share/nginx/html/static:ro  # Read-only for Nginx
 
   django:
     build:
@@ -21,9 +24,15 @@ services:
     restart: always
     networks: 
       - todoList
-    command: sh -c "python manage.py migrate --no-input && gunicorn todoList.wsgi --bind 0.0.0.0:8000"
+    command: >
+      sh -c "
+        python manage.py migrate --no-input && 
+        python manage.py collectstatic --no-input && 
+        gunicorn todoList.wsgi --bind 0.0.0.0:8000"
     depends_on:
       - db
+    volumes:
+      - static_volume:/app/backend/staticfiles  # Read & Write for Django
     healthcheck: 
       test: ["CMD-SHELL","curl -f http://localhost:8000/admin || exit 1"]
       interval: 10s
@@ -48,11 +57,10 @@ services:
       timeout: 5s
       retries: 5
       start_period: 60s
-    
 
 volumes:
   mysql-data:
+  static_volume:  # Shared volume for static files
 
 networks:
   todoList:
-
