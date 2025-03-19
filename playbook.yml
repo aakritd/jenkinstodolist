@@ -1,0 +1,54 @@
+- name: Deploy Django, Nginx, and MySQL with Kubernetes
+  hosts: localhost
+  become: yes
+
+  tasks:
+    # Set environment variable for kubectl
+    - name: Set environment variable for kubectl
+      set_fact:
+        kubectl_env: "{{ lookup('env', 'KUBECONFIG') }}"
+
+    # Use the environment variables for Docker Hub login
+    - name: Docker login to Docker Hub
+      docker_login:
+        username: "{{ lookup('env', 'DOCKER_USERNAME') }}"
+        password: "{{ lookup('env', 'DOCKER_PASSWORD') }}"
+        registry: "https://index.docker.io/v1/"
+
+    - name: Build the frontend image
+      shell: |
+        cd nginx
+        docker build --no-cache -t frontend-img .
+      args:
+        chdir: "{{ playbook_dir }}"
+
+    - name: Build the backend image
+      shell: docker build --no-cache -t backend-img .
+      args:
+        chdir: "{{ playbook_dir }}"
+
+    - name: Pull and tag MySQL image
+      shell: |
+        docker pull mysql:latest
+        docker tag mysql:latest aakritdongol/mysql:latest
+
+    - name: Tag the images for Docker Hub
+      shell: |
+        docker tag frontend-img:latest aakritdongol/frontend-img:latest
+        docker tag backend-img:latest aakritdongol/backend-img:latest
+
+    - name: Push the images to Docker Hub
+      shell: |
+        docker push aakritdongol/frontend-img:latest
+        docker push aakritdongol/backend-img:latest
+        docker push aakritdongol/mysql:latest
+
+    - name: Create Kubernetes resources
+      shell: |
+        cd k8s
+        export KUBECONFIG={{ kubectl_env }}  # Export the KUBECONFIG environment variable
+        bash namespace.sh
+        bash create-pv.sh
+        bash command.sh
+      args:
+        chdir: "{{ playbook_dir }}"
