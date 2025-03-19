@@ -1,24 +1,4 @@
 apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: database-deployment
-  labels:
-    app: db
-  namespace: web-ns
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: db
-  template:
-    metadata:
-      labels:
-        app: db
-    spec:
-      containers:
-      - name: db
-        image: aakritdongol/mysql:latest
-        imagePullPolicy: AlwaysapiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: database-statefulset
@@ -58,18 +38,3 @@ spec:
       resources:
         requests:
           storage: 1Gi  # Adjust storage size as needed
-
-        ports:
-        - containerPort: 3306
-        env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: "root"
-        - name: MYSQL_DATABASE
-          value: "todoList"
-        volumeMounts:
-        - mountPath: "/var/lib/mysql"
-          name: database-volume
-      volumes:
-      - name: database-volume
-        persistentVolumeClaim:
-          claimName: database-pvc
