@@ -30,7 +30,7 @@ spec:
         - name: DB_PASSWORD
           value: "root"
         - name: DB_HOST
-          value: "db"
+          value: "database-service.web-ns.svc.cluster.local"
         - name: DB_PORT
           value: "3306"
         volumeMounts:
