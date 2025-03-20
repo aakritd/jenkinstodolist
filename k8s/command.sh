@@ -26,7 +26,7 @@ echo "creating deployment for backend..."
 
 kubectl apply -f ./backend/deployment.yml
 
-kubectl rollout restart deployment backend-deployment -n web-ns
+# kubectl rollout restart deployment backend-deployment -n web-ns
 
 echo "deployment for backend created"
 
@@ -46,7 +46,7 @@ echo "creating deployment for frontend..."
 
 kubectl apply -f ./frontend/deployment.yml
 
-kubectl rollout restart deployment frontend-deployment -n web-ns
+# kubectl rollout restart deployment frontend-deployment -n web-ns
 
 echo "deployment for frontend created"
 
