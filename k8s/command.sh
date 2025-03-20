@@ -6,7 +6,7 @@ echo "creating deployment for database..."
 
 kubectl apply -f ./database/deployment.yml
 
-kubectl rollout restart statefulset database-statefulset -n web-ns
+# kubectl rollout restart statefulset database-statefulset -n web-ns
 
 echo "deployment for database created"
 
