@@ -3,7 +3,7 @@
   become: yes
   become_method: sudo
   become_user: root
-  become_password: "your_password"  # Add your sudo password here for testing
+  become_password: "root"  # Add your sudo password here for testing
 
   tasks:
     # Set environment variable for kubectl
