@@ -1,16 +1,30 @@
 {% load static %}
 
-<h1>Todo App</h1>
-<h2>Login</h2>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
     <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
-<form method="POST">
-    {% csrf_token %}
-
-    {{form.as_p}}
-
-    <input type="submit" value="Login">
-</form>
-
-<P>Don't have an account? <a href="{% url 'register' %}">Register</a></P>
+<body>
+    <main>
+        <h1 class="fs-xlarge bold">Login</h1>
+        <br>
+        <br>
+        
+        <form method="POST">
+            {% csrf_token %}
+            <div class="add-bar">
+                {{ form.as_p }}
+            </div>
+            <br>
+            <br>
+            <input type="submit" value="Login" class="fs-large bold">
+        </form>
+        <br><br>
+        <p class="fs-med">Don't have an account? <a href="{% url 'register' %}" class="color-blue">Register</a></p>
+    </main>
+</body>
+</html>
