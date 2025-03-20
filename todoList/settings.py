@@ -42,7 +42,7 @@ INSTALLED_APPS = [
 
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:83",
-    "https://d944-202-51-88-148.ngrok-free.app/",
+    "https://d944-202-51-88-148.ngrok-free.app",
     "http://localhost:83",
 ]
 
