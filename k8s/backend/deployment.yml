@@ -36,6 +36,7 @@ spec:
         volumeMounts:
         - mountPath: /app/backend/staticfiles
           name: static-files-volume
+          readOnly: false  # Read-write access for backend
       volumes:
       - name: static-files-volume
         persistentVolumeClaim:
