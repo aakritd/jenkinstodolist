@@ -197,9 +197,9 @@ font-size: 0.7rem;
 /* Remove underline from task actions links */
 .task-actions a {
     text-decoration: none;
-    color: #000000; /* Set default color to blue */
+    color: #2196f3; /* Set default color to blue */
 }
 
 .task-actions a:hover {
-    color: #000000; /* Change to green when hovered */
+    color: #33c747; /* Change to green when hovered */
 }
