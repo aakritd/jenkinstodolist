@@ -44,7 +44,7 @@ CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:83",
     "https://d944-202-51-88-148.ngrok-free.app",
     "http://localhost:83",
-    "http://jenkinstodolist.onrender.com",
+    "https://jenkinstodolist.onrender.com",
 ]
 
 MIDDLEWARE = [
@@ -100,7 +100,7 @@ DATABASES = {
         'NAME': os.getenv('DB_NAME', 'todolist'),
         'USER': os.getenv('DB_USER', 'root'),
         'PASSWORD': os.getenv('DB_PASSWORD', 'root'),
-        'HOST': os.getenv('DB_HOST', 'db'),  # Use 'db' as per your Deployment
+        'HOST': os.getenv('DB_HOST', 'mysql'),  # Use 'db' as per your Deployment
         'PORT': os.getenv('DB_PORT', '3306'),
     }
 }
