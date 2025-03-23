@@ -100,7 +100,7 @@ DATABASES = {
         'NAME': os.getenv('DB_NAME', 'todolist'),
         'USER': os.getenv('DB_USER', 'root'),
         'PASSWORD': os.getenv('DB_PASSWORD', 'root'),
-        'HOST': os.getenv('DB_HOST', 'mysql'),  # Use 'db' as per your Deployment
+        'HOST': os.getenv('DB_HOST', 'todolist.internal.render.com'),  # Use 'db' as per your Deployment
         'PORT': os.getenv('DB_PORT', '3306'),
     }
 }
